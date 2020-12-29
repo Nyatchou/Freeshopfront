@@ -1,0 +1,95 @@
+<section class="banner-bootom-w3-agileits m-t-150 m-b-100">
+    <div class="container">
+        <div class="row p-b-35">
+            <div class="col-lg-9 m-auto">
+                <div class="search-product pos-relative bo4 of-hidden">
+                    <input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search-product"
+                        placeholder="Rechercher Produits..." id="search">
+
+                    <button class="flex-c-m size5 ab-r-m color2 color1-hov trans-0-4" style="background-color: white">
+                        <i class="fs-12 fa fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-4 products-left">
+                <app-categorie-box-list>
+
+                </app-categorie-box-list>
+                <h4 class="title1 p-b-32 p-t-32">
+                    Filtres
+                </h4>
+                <!-- <div class="filter-price p-t-22 p-b-15 bo3">
+                    <div class="m-text15 p-b-17">
+                        Prix
+                    </div>
+
+                    <div class="wra-filter-bar">
+                        <div id="filter-bar"></div>
+                    </div>
+
+                    <div class="flex-sb-m flex-w p-t-16">
+
+                        <div class="s-text3 p-t-10 p-b-10">
+                            Range: <span id="value-lower">0</span> FCFA - <span id="value-upper">200000</span> FCFA
+                        </div>
+
+                        <div class="w-size11 p-b-20">
+                            <button class="flex-c-m size4 bg9 bo-rad-15 hov1 s-text14 trans-0-4" id="btn_filter" onclick="postFilters()">
+                                        Filtrer
+                            </button>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="filterCh p-b-50 p-t-15">
+                    <div class="m-text-15 p-b-17">
+                        Trie
+                    </div>
+                    <select class="browser-default custom-select" (change)="changeSortType($event)">
+                        <option selected value="Par défaut">Par défaut</option>
+                        <option disabled value="Par popularité">Par popularité</option>
+                        <option value="Prix: croissant">Prix: croissant</option>
+                        <option value="Prix: décroissant">Prix: décroissant</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-md-8 products-right">
+
+                <!-- <div class="flex-sb-m flex-w p-b-35">
+
+                    <div class="col-md-6">
+
+                    </div>
+
+                    <span class="s-text8 p-t-5 p-b-5" id="NblistRes">
+						
+					</span>
+                </div> -->
+                <div *ngIf="!emptyStock">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-6 col-lg-4 p-b-50 box"
+                            *ngFor="let article of currentArticleslist">
+                            <app-cards-article [article]="article"></app-cards-article>
+                        </div>
+                        <br>
+                    </div>
+                    <nav aria-label="Page navigation example m-auto" *ngIf="articlesPages.length === 0">
+                        <ul class="pagination pagination-circle pg-blue">
+                            <li *ngFor="let i of articlesPages" [ngClass]="currentPageNb === i ? 'page-item active' : 'page-item'"><a class="page-link"
+                                    (click)="onGoToPage(i)">{{i}}</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div *ngIf="emptyStock">
+                    <app-empty-stock></app-empty-stock>
+                </div>
+                <br>
+            </div>
+
+        </div>
+    </div>
+</section>

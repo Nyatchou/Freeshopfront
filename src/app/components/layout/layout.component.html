@@ -1,0 +1,108 @@
+<header>
+  <!--Navbar-->
+  <mdb-navbar SideClass="navbar navbar-expand-lg primary-color navbar-dark fixed-top scrolling-navbar" [containerInside]="true">
+
+    <!-- Navbar brand -->
+    <mdb-navbar-brand><a class="navbar-brand" href="#"><img src="/assets/imgs/logo_2.png" class="img-fluid" alt="Responsive image" style="width: 130px; height:50px"/></a></mdb-navbar-brand>
+
+    <!-- Collapsible content -->
+    <links>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item m-r-15" routerLinkActive="active">
+          <a class="nav-link waves-light" routerLink="home" mdbWavesEffect>Accueil</a>
+        </li>
+        <li class="nav-item m-r-15" routerLinkActive="active">
+          <a class="nav-link waves-light" routerLink="shop" mdbWavesEffect>Zone de Ventes</a>
+        </li>
+        <li class="nav-item m-r-15" routerLinkActive="active">
+          <a class="nav-link waves-light" mdbWavesEffect>Contact</a>
+        </li>
+        <li class="nav-item m-r-15" routerLinkActive="active">
+          <a class="nav-link waves-light" routerLink="apropos" mdbWavesEffect>A propos</a>
+        </li>
+        <!-- Dropdown -->
+      </ul>
+      <!-- Links -->
+
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item m-r-10">
+          <a class="nav-link" routerLink="cart">
+            <mat-icon matBadge="{{nbItemsInCart}}" matBadgeColor="black" class="p-t-7">add_shopping_cart</mat-icon>
+          </a>
+        </li>
+        <li class="nav-item avatar dropdown" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" alt="" class="img-fluid rounded-circle z-depth-0 profile-img-len">
+          </a>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect>Mon compte</a>
+            <a class="dropdown-item waves-light" (click)="logout()" mdbWavesEffect>Deconnexion</a>
+          </div>
+        </li>
+      </ul>
+    </links>
+    <!-- Collapsible content -->
+
+  </mdb-navbar>
+  <!--/.Navbar-->
+</header>
+<router-outlet></router-outlet>
+
+<!-- <ng-content>
+
+</ng-content> -->
+
+
+
+<footer class="page-footer font-small blue p-t-4">
+  <div class="container-fluid text-center text-md-left">
+
+    <div class="row">
+      <div class="col-md-6 mt-md-0 m-t-3">
+        <h5 class="text-uppercase">Retrouvez-nous sur</h5>
+        <a href="https://www.facebook.com/Freeshop-1623205574489761/"><img src="" /></a>
+        <a href="#"><img src="" /></a>
+        <a href="#"><img src="" /></a>
+      </div>
+      <hr class="clearfix w-100 d-md-none pb-3">
+
+      <div class="col-md-3 mb-md-0 mb-3">
+        <h5 class="text-uppercase">Nos articles</h5>
+        <ul class="list-unstyled">
+          <li>
+            <a href="">Chaussures</a>
+          </li>
+          <li>
+            <a href="">Produits de beauté</a>
+          </li>
+          <li>
+            <a href="">Liqueurs</a>
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <h5 class="text-uppercase">A propos de FreeShop</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="">Origine de FreeShop</a>
+          </li>
+          <li>
+          <a href="">Autres projets</a>
+          </li>
+          <li>
+            <a href="#">Nos fournisseurs</a>
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="footer-copyright text-center py-3">© 2019 Copyright:
+    <a href="">www.freeshop.cm</a>
+  </div>
+</footer>

@@ -1,0 +1,123 @@
+<div class="background-des">
+    <div class="card-signup">
+        <form [formGroup]="signupForm">
+            <h1>Enregistrement</h1>
+            <!-- <div *ngIf="hasError" class="error-label mb-4">
+                <i class="fa fa-exclamation-circle"></i> Username already exists
+            </div> -->
+
+            <div class="form-group mb-4">
+                <input type="text" formControlName="username" class="form-control" placeholder="Nom d'utilisateur"
+                    [ngClass]="{'red-border' : signupForm.get('username').invalid && signupForm.get('username').dirty}">
+                <div *ngIf="signupForm.get('username').invalid && signupForm.get('username').dirty" class="error-label">
+                    <div *ngIf="signupForm.get('username').hasError('required') && signupForm.get('username').dirty">
+                        <i class="fa fa-exclamation-circle"></i> {{validations.username.requiredMessage}}
+                    </div>
+                    <div *ngIf="signupForm.get('username').hasError('minlength') && signupForm.get('username').dirty">
+                        <i class="fa fa-exclamation-circle"></i> {{validations.username.minLengthMessage}}
+                    </div>
+                    <div *ngIf="signupForm.get('username').hasError('pattern') && signupForm.get('username').dirty">
+                        <i class="fa fa-exclamation-circle"></i> {{validations.username.validUsernameMessage}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mb-4">
+                <input type="text" formControlName="email" class="form-control" placeholder="Adresse email"
+                    [ngClass]="{'red-border' : signupForm.get('email').invalid && signupForm.get('email').dirty}">
+                <div *ngIf="signupForm.get('email').invalid && signupForm.get('email').dirty" class="error-label">
+                    <div *ngIf="signupForm.get('email').hasError('required') && signupForm.get('email').dirty">
+                        <i class="fa fa-exclamation-circle"></i> {{validations.email.requiredMessage}}
+                    </div>
+                    <div *ngIf="signupForm.get('email').hasError('pattern') && signupForm.get('email').dirty">
+                        <i class="fa fa-exclamation-circle"></i> {{validations.email.invalidMailMessage}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row form-group mb-4">
+                <div class="col-md-6 col">
+                    <input type="text" formControlName="firstname" class="form-control" placeholder="Noms"
+                        [ngClass]="{'red-border' : signupForm.get('firstname').invalid && signupForm.get('firstname').dirty }">
+                    <div *ngIf="signupForm.get('firstname').invalid && signupForm.get('firstname').dirty"
+                        class="error-label">
+                        <div
+                            *ngIf="signupForm.get('firstname').hasError('required') && signupForm.get('firstname').dirty">
+                            <i class="fa fa-exclamation-circle"></i> {{validations.firstname.requiredMessage}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col">
+                    <input type="text" formControlName="lastname" class="form-control" placeholder="Prénoms"
+                        [ngClass]="{'red-border' : signupForm.get('lastname').invalid && signupForm.get('lastname').dirty}">
+                    <div *ngIf="signupForm.get('lastname').invalid && signupForm.get('lastname').dirty"
+                        class="error-label">
+                        <div
+                            *ngIf="signupForm.get('lastname').hasError('required') && signupForm.get('lastname').dirty">
+                            <i class="fa fa-exclamation-circle"></i> {{validations.lastname.requiredMessage}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row mb-4">
+                <div class="col col-md-4">
+                    <select class="browser-default custom-select" formControlName="sexe">
+                        <option value="" selected disabled>SEXE</option>
+                        <option value="M">Masculin</option>
+                        <option value="F">Feminin</option>
+                    </select>
+
+                </div>
+                <div class="col">
+                    <!-- <nz-date-picker formControlName="date" [nzFormat]="dateFormat" nzPlaceHolder="Date of Birth"
+                        [nzMode]="mode" (nzOnOpenChange)="handleDateOpenChange($event)">
+                    </nz-date-picker> -->
+                </div>
+            </div>
+            <div class="form-group">
+                <input [type]="showpassword ? 'text' : 'password'" formControlName="password" class="form-control"
+                    placeholder="Mot de passe"
+                    [ngClass]="{'red-border' : signupForm.get('password').invalid && signupForm.get('password').dirty}">
+                <span [ngClass]="showpassword ? 'fa fa-eye field-icon' : 'fa fa-eye-slash field-icon'"
+                    (click)="togglePasswordVisibility()"></span>
+                <div *ngIf="signupForm.get('password').invalid && signupForm.get('password').dirty" class="error-label">
+                    <div *ngIf="signupForm.get('password').hasError('required') && signupForm.get('password').dirty">
+                        <i class="fa fa-exclamation-circle"></i> {{validations.password.requiredMessage}}
+                    </div>
+                    <div *ngIf="signupForm.get('password').hasError('minlength') && signupForm.get('password').dirty">
+                        <i class="fa fa-exclamation-circle"></i> {{validations.password.minLengthMessage}}
+                    </div>
+                    <div *ngIf="signupForm.get('password').hasError('pattern') && signupForm.get('password').dirty">
+                        <i class="fa fa-exclamation-circle"></i> {{validations.password.patternMessage}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-blue m-b-8 m-t-20" [disabled]="signupForm.invalid" type="submit" (click)="submit()"> 
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Enregistrement
+                </button>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <a routerLink="/signin" class="small-link">Vous avez déjà un compte? Connectez-vous</a>
+                </div>
+            </div>
+            <div class="row text-center m-t-15 m-b-10">
+                <div class="col-md-12">
+                    <p>Enregistrez-vous avec:</p>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-6">
+                    <button class="social-button" (click)="facebookSignup()"><img src="/assets/imgs/facebook.png"
+                            height="40px" alt="facebook"></button>
+                </div>
+                <div class="col-md-6">
+                    <button class="social-button" (click)="googleSignup()"><img src="/assets/imgs/search.png"
+                            height="40px" alt="google"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

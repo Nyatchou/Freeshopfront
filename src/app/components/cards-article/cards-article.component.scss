@@ -1,0 +1,26 @@
+
+
+@media only screen and (max-device-width:480px) {
+    .small-device1 {
+        font-size: 15px
+    }
+    .small-device2 {
+        font-size: 18px;
+    }
+
+}
+@media only screen and (max-device-width:480px) {
+    .card-size{
+        height: 120px;
+    }
+}
+
+@media only screen and (max-device-width:800px) {
+    .card-size{
+        height: 150px;
+    }
+}
+
+.card-size{
+    height: 200px;
+}

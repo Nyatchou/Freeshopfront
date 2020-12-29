@@ -1,0 +1,48 @@
+<div class="background-des">
+    <div class="card-signupcheck">
+        <form [formGroup]="signupVerificationForm">
+            <h2>Finalisation enregistrement</h2>
+            <p>
+                Un mail vous a été envoyez à l'adresse mail que vous avez renseignée précédemment. Consultez-le pour
+                récupérer le code s'y trouvant et remplissez les champs ci-dessous.
+            </p>
+            <div class="form-group mb-4">
+                <input type="text" formControlName="userId" class="form-control" placeholder="Identifiant d'utilisateur" [value]="userIdVal"
+                    [ngClass]="{'red-border' : signupVerificationForm.get('userId').invalid && signupVerificationForm.get('userId').dirty}">
+                <div *ngIf="signupVerificationForm.get('userId').invalid && signupVerificationForm.get('userId').dirty"
+                    class="error-label">
+                    <div
+                        *ngIf="(signupVerificationForm.get('userId').hasError('pattern') || signupVerificationForm.get('userId').hasError('required')) && signupVerificationForm.get('userId').dirty">
+                        <i class="fa fa-exclamation-circle"></i> {{emptyFieldMessage}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mb-4">
+                <input type="text" formControlName="code" class="form-control" placeholder="Code"
+                    [ngClass]="{'red-border' : signupVerificationForm.get('code').invalid && signupVerificationForm.get('code').dirty}">
+                <div *ngIf="signupVerificationForm.get('code').invalid && signupVerificationForm.get('code').dirty"
+                    class="error-label">
+                    <div
+                        *ngIf="(signupVerificationForm.get('code').hasError('pattern') || signupVerificationForm.get('code').hasError('required')) && signupVerificationForm.get('code').dirty">
+                        <i class="fa fa-exclamation-circle"></i> {{emptyFieldMessage}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <button [disabled]="signupVerificationForm.invalid" class="btn btn-blue btn-flat" (click)="submit()">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Valider
+                </button>
+            </div>
+            <p>
+                Si vous n'avez pas reçu de mail, cliquez sur le bouton ci-dessous
+            </p>
+            <div class="form-group text-center">
+                <button [disabled]="signupVerificationForm.invalid" class="btn btn-blue btn-flat" (click)="resendCode()">
+                    <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> -->
+                    Renvoyer code 
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

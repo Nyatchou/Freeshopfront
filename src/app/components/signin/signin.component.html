@@ -1,0 +1,61 @@
+<div class="background-des">
+    <div class="card-login">
+        <h2>Connexion</h2>
+        <form [formGroup]="loginForm">
+            <div class="form-group mb-5">
+                <!-- <label for="username">Username</label> -->
+                <!-- <fa-icon [icon]="iconUser"> </fa-icon>  -->
+                <input type="text" formControlName="username" class="form-control"
+                    [ngClass]="{'red-border' : loginForm.get('username').invalid && loginForm.get('username').dirty}"
+                    placeholder="Nom d'utilisateur" />
+                <div *ngIf="loginForm.get('username').invalid && loginForm.get('username').dirty" class="error-label">
+                    <div
+                        *ngIf="(loginForm.get('username').hasError('pattern') || loginForm.get('username').hasError('required')) && loginForm.get('username').dirty">
+                        <i class="fa fa-exclamation-circle"></i> {{validations.username.requiredMessage}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mb-5">
+                <input [type]="showPassword ? 'text' : 'password'" formControlName="password" class="form-control"
+                    [ngClass]="{'red-border' : loginForm.get('password').invalid && loginForm.get('password').dirty }"
+                    placeholder="Mot de passe">
+                <i [ngClass]="showPassword ? 'fa fa-eye field-icon' : 'fa fa-eye-slash field-icon'" (click)="togglePasswordVisibility()"></i>
+
+                <div *ngIf="loginForm.get('password').invalid && loginForm.get('password').dirty" class="error-label">
+                    <div
+                        *ngIf="(loginForm.get('password').hasError('pattern') || loginForm.get('password').hasError('required')) && loginForm.get('password').dirty">
+                        <i class="fa fa-exclamation-circle"></i> {{validations.password.requiredMessage}}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <button [disabled]="loginForm.invalid" class="btn btn-blue btn-flat" (click)="submit()">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Connexion
+                </button>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-6">
+                    <a routerLink="/signup" class="small-link">Vous n' avez pas de compte? Enregistrez-vous</a>
+                </div>
+                <div class="col-md-6">
+                    <a routerLink="/passwordreset1" class="small-link">Mot de passe oublié ?</a>
+                </div>
+            </div>
+            <div class="row text-center m-t-15 m-b-10">
+                <div class="col-md-12">
+                    <p>Se connecter avec:</p>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-6">
+                    <button class="social-button" (click)="facebookLogin()"><img src="/assets/imgs/facebook.png" height="40px" alt="facebook"></button>
+                </div>
+                <div class="col-md-6">
+                    <button class="social-button" (click)="googleLogin()"><img src="/assets/imgs/search.png" height="40px" alt="google"></button> 
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

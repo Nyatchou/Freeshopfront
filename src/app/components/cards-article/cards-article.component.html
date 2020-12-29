@@ -1,0 +1,22 @@
+<div class="card align-items-center">
+    <div class="view overlay">
+        <img src="{{article.imageUrl}}"  class="card-img-top img-fluid card-size" alt="PRODUCT-IMG">
+        <a>
+            <div class="mask rgba-white-slight"></div>
+        </a>
+    </div>
+    <div class="card-body text-center description-box">
+        <h5> 
+            <strong class="dark-grey-text fs-20">{{article.nom}}</strong>
+        </h5>
+        <h5 class="font-weight black-text" *ngIf="article.prevPrix !== null"> 
+            <strike><strong>{{article.prevPrix}} FCFA</strong></strike>
+        </h5>
+
+        <h4 class="font-weight-bold blue-text small-device2">
+            <strong class="fs-25">{{article.prix}} FCFA</strong>
+        </h4>
+       
+        <a class="btn btn-primary small-device2" [routerLink]="['/article', article.id]">Acheter</a>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="css-treeview p-b-35">
+    <h4>Categories</h4>
+    <ul class="tree-list-pad">
+        <li *ngFor="let category of categoriesList">
+            <input type="checkbox" id="category.nom" />
+            <label for="category.nom" (click)="setCurrentCategory(category.nom)">
+                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                {{category.nom}}
+            </label>
+            <ul [hidden]="category.nom !== currentCategory">
+                <li *ngFor="let souscategorie of category.souscategories">
+                    <a [ngClass]="currentSubcategory === souscategorie.nom ? 's-text-13 activelink': 's-text-13'"
+                        (click)="setCurrentSubCategory(souscategorie.nom, souscategorie.pk)">
+                        {{souscategorie.nom}}
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

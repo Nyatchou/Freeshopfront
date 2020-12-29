@@ -1,0 +1,12 @@
+<div class="row p-b-20 grey-text">
+  <div class="col-md-4 col-sm-4 col-4 m-t-8">
+    {{caractName}}
+  </div>
+  <div class="col-md-8 col-sm-8 col-8">
+    <select class="browser-default custom-select" (change)="setNewCaract($event)">
+      <option *ngFor="let val of values" [value]="val" [selected]="selectedValue === val">
+        {{val}}
+      </option>
+    </select>
+  </div>
+</div>

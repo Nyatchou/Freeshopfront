@@ -1,0 +1,66 @@
+<div class="col-md-9 m-t-100 m-auto">
+
+    <div class="loading-indicator"  *ngIf="!datasLoaded">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner> 
+    </div>
+
+    <div class="row m-t-150" *ngIf="datasLoaded">
+        <div class="col-lg-5">
+            <div class="view rounded z-depth-2 mb-lg-0 mb-4">
+                <img class="img-fluid" src="{{articleExpanded.imageUrl}}" alt="Sample image">
+                <a>
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="col-lg-2"></div>
+
+        <div class="col-lg-5">
+            <div class="font-weight-bold m-b-20 fs-30"><strong>{{articleExpanded.nom}}</strong></div>
+            <div class="col-lg-12 ">
+                <h1 class="font-weight-bold grey-text">{{articleExpanded.prix}} FCFA</h1>
+            </div>
+            <br> 
+            <div class="row p-b-20">
+                <div class="col-md-6" *ngFor="let caract of sousarticleRep.caracteristiques">
+                    
+                    <app-select-caract 
+                        [selectedValue]="caract.valeur"
+                        [caractName]="caract.caracteristique"
+                        [values]="listValuesFromCaract(caract.caracteristique)"
+                        (newSelectEvent)="changeSousArticle($event)"
+                    >
+                    </app-select-caract>
+                </div>
+            </div>
+
+            <div class="row p-b-10 title_desc">
+                <div class="col-sm-6 col-6">
+                    Description
+                </div>
+                <div class="col-sm-6 col-6">
+                    <i class="fa float-r {{descriptionFontIcon}}" (click)="onclickDescIcon()"></i>
+                </div>
+            </div>
+            <div class="row p-b-20 container">
+                <p *ngIf="descriptionFontIcon === 'fa-minus'">
+                    {{articleExpanded.description}}
+                </p>
+            </div>
+
+            <div class="row p-b-20">
+
+                <div class="col-lg-12">
+                    <button class="flex-c-m p-t-8 p-b-8 sizefull bg9 bo-rad-23 hov1 text-white s-text1 trans-0-4" (click)="addToCart()">
+                        AJOUTER AU PANIER
+                    </button>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <hr class="my-5 ">
+
+</div>

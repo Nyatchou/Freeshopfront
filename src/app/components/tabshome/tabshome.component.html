@@ -1,0 +1,16 @@
+<div class="loading-indicator" *ngIf="!datas_loaded">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner> 
+</div>
+
+<mat-tab-group mat-align-tabs="center" *ngIf = "datas_loaded">
+    <div *ngFor="let category of categoriesToHome">
+        <mat-tab label="{{category.nom}}"> 
+            <div class="row">
+                <div class="col-6 col-sm-6 col-md-4 col-lg-3 p-b-50 box"  *ngFor='let article of category.articlestohome'>
+                    <app-cards-article [article] = article></app-cards-article>
+                </div>
+            </div>    
+        </mat-tab>
+    </div>
+
+  </mat-tab-group>

@@ -1,0 +1,47 @@
+<div class="container-table-cart pos-relative">
+    <div class="wrap-table-shopping-cart bgwhite">
+        <div class="loading-indicator" *ngIf="!datasLoaded">
+            <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+        </div>
+        <table class="table-shopping-cart" *ngIf="datasLoaded">
+            <tr class="table-head">
+                <th class="column-1"></th>
+                <th class="column-2">Produit</th>
+                <th class="column-3">Prix</th>
+                <th class="column-4 p-l-20">Quantité</th>
+                <th class="column-5">Total</th>
+                <th class="column-6">Supprimer</th>
+            </tr>
+            <tr class="table-row" *ngFor="let element of panierList">
+                <td class="column-1">
+                    <div class="cart-img-product b-rad-4 o-f-hidden">
+                        <img src="{{element.sousarticle.image_url}}" class="img-fluid" alt="IMG-PRODUCT">
+                    </div>
+                </td>
+                <td class="column-2">{{element.sousarticle.nom}}</td>
+                <td class="column-3">{{element.prixunitaire}} FCFA</td>
+                <td class="column-4">
+                    <div class="flex-w bo5 of-hidden w-size17 text-center">
+                        <button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2"
+                            (click)="decreaseQty(element)">
+                            <i class="fs-15 fa fa-minus" aria-hidden="true"></i>
+                        </button>
+
+                        <input class="size8 m-text18 t-center num-product my" value="{{element.quantite}}">
+
+                        <button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2"
+                            (click)="increaseQty(element)">
+                            <i class="fs-15 fa fa-plus" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </td>
+                <td class="column-5">{{element.prixunitaire * element.quantite}} FCFA</td>
+                <td class="column-6">
+                    <a data-toggle="modal" data-target="#ModalDanger" class="p-l-20" (click)="deleteItem(element)">
+                        <mat-icon>delete</mat-icon>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
